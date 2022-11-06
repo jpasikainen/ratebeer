@@ -1,0 +1,24 @@
+<div id="<%= dom_id beer_club %>">
+  <p>
+    <strong>Name:</strong>
+    <%= beer_club.name %>
+  </p>
+
+  <p>
+    <strong>Founded:</strong>
+    <%= beer_club.founded %>
+  </p>
+
+  <p>
+    <strong>City:</strong>
+    <%= beer_club.city %>
+  </p>
+
+  <p>
+  Members:
+    <% beer_club.members.each do |member| %>
+      <%= link_to member.username, member %>
+    <% end %>
+  </p>
+
+</div>
