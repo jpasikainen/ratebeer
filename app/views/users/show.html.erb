@@ -1,6 +1,22 @@
 <p style="color: green"><%= notice %></p>
 
-<%= render @user %>
+<h3>Username:</h3>
+<p>
+  <%= @user.username %>
+</p>
+
+<% if @user.ratings.empty? %>
+  No ratings.
+<% else %>
+  Has made <%= pluralize @user.ratings.count, 'rating' %>, average rating <%= @user.average_rating %>
+<% end %>
+
+<strong>ratings</strong>
+<ul>
+  <% @user.ratings.each do |rating| %>
+    <li> <%= render rating %> <%= link_to 'delete', rating, data: {"turbo-method": :delete} %> </li>
+  <% end %>
+</ul>
 
 <div>
   <%= link_to "Edit this user", edit_user_path(@user) %> |
