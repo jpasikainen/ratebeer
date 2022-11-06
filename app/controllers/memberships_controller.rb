@@ -1,5 +1,5 @@
 class MembershipsController < ApplicationController
-  before_action :set_membership, only: %i[ show edit update destroy ]
+  before_action :set_membership, only: %i[show edit update destroy]
 
   # GET /memberships or /memberships.json
   def index
@@ -24,20 +24,19 @@ class MembershipsController < ApplicationController
   # POST /memberships or /memberships.json
   def create
     @membership = Membership.new params.require(:membership).permit(:beer_club_id)
-    if current_user.memberships.map{|m| m.beer_club_id}.include? @membership.beer_club_id
+    if current_user.memberships.map(&:beer_club_id).include? @membership.beer_club_id
       redirect_to new_membership_path, notice: "User #{current_user.username} is already in the club!"
-    else
-      @membership.user = current_user
-      @beer_clubs = BeerClub.all
+    end
+    @membership.user = current_user
+    @beer_clubs = BeerClub.all
 
-      respond_to do |format|
-        if @membership.save
-          format.html { redirect_to membership_url(@membership), notice: "Membership was successfully created." }
-          format.json { render :show, status: :created, location: @membership }
-        else
-          format.html { render :new, status: :unprocessable_entity }
-          format.json { render json: @membership.errors, status: :unprocessable_entity }
-        end
+    respond_to do |format|
+      if @membership.save
+        format.html { redirect_to membership_url(@membership), notice: "Membership was successfully created." }
+        format.json { render :show, status: :created, location: @membership }
+      else
+        format.html { render :new, status: :unprocessable_entity }
+        format.json { render json: @membership.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -66,13 +65,14 @@ class MembershipsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_membership
-      @membership = Membership.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def membership_params
-      params.require(:membership).permit(:beer_club_id, :user_id)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_membership
+    @membership = Membership.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def membership_params
+    params.require(:membership).permit(:beer_club_id, :user_id)
+  end
 end
