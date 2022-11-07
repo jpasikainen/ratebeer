@@ -36,4 +36,12 @@ describe "Rating" do
       expect(page).to have_content "#{r.beer.name} #{r.score} #{r.user.username}"
     end
   end
+
+  it "can be removed from GUI" do
+    r = FactoryBot.create(:rating, user: user)
+    visit user_path(user)
+    expect{
+      click_link("delete", href: "/ratings/#{r.id}")
+    }.to change{Rating.count}.from(1).to(0)
+  end
 end
