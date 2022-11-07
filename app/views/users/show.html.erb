@@ -27,9 +27,11 @@
 
 <% if @user.ratings.empty? %>
     user has no ratings
-  <% else %>
+<% else %>
     Favorite style is <%= @user.favorite_style %>
-  <% end %>
+    <br />
+    Favorite brewery is <%= @user.favorite_brewery.name %>
+<% end %>
 
 
 <% if @user == current_user %>
