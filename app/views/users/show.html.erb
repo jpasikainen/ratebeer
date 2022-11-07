@@ -25,6 +25,12 @@
   <% end %>
 </ul>
 
+<% if @user.ratings.empty? %>
+    user has no ratings
+  <% else %>
+    Favorite style is <%= @user.favorite_style %>
+  <% end %>
+
 
 <% if @user == current_user %>
 <div>
