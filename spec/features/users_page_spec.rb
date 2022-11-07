@@ -21,6 +21,38 @@ describe "User" do
       expect(current_path).to eq(signin_path)
       expect(page).to have_content 'Username and/or password mismatch'
     end
+
+    it "has made ratings and can see only theirs" do
+      sign_in(username: "Pekka", password: "Foobar1")
+  
+      brewery = FactoryBot.create :brewery, name: "Koff"
+      beer = FactoryBot.create :beer, name: "iso 3", brewery:brewery
+      FactoryBot.create(:rating, score: 1, beer: beer, user: @user)
+      FactoryBot.create(:rating, score: 2, beer: beer, user: FactoryBot.create(:user, username: "user2", password: "Wasd1", password_confirmation: "Wasd1"))
+  
+      visit user_path(@user)
+      expect(page).to have_content "Has made 1 rating"
+      expect(page).to have_content "iso 3 1"
+    end
+
+    it "without ratings doesn't have favorite brewery nor style" do
+      sign_in(username: "Pekka", password: "Foobar1")
+      visit user_path(@user)
+      expect(page).not_to have_content "Favorite style"
+      expect(page).not_to have_content "Favorite brewery"
+    end
+
+    it "with a rating can see their favorite brewery and style" do
+      sign_in(username: "Pekka", password: "Foobar1")
+
+      brewery = FactoryBot.create :brewery, name: "Koff"
+      beer = FactoryBot.create :beer, name: "iso 3", style: "cool", brewery:brewery
+      FactoryBot.create(:rating, score: 1, beer: beer, user: @user)
+
+      visit user_path(@user)
+      expect(page).to have_content "Favorite style is #{beer.style}"
+      expect(page).to have_content "Favorite brewery is #{brewery.name}"
+    end
   end
 
   it "when signed up with good credentials, is added to the system" do
@@ -32,18 +64,5 @@ describe "User" do
     expect{
       click_button('Create User')
     }.to change{User.count}.by(1)
-  end
-
-  it "has made ratings and can see only theirs" do
-    sign_in(username: "Pekka", password: "Foobar1")
-
-    brewery = FactoryBot.create :brewery, name: "Koff"
-    beer = FactoryBot.create :beer, name: "iso 3", brewery:brewery
-    FactoryBot.create(:rating, score: 1, beer: beer, user: @user)
-    FactoryBot.create(:rating, score: 2, beer: beer, user: FactoryBot.create(:user, username: "user2", password: "Wasd1", password_confirmation: "Wasd1"))
-
-    visit user_path(@user)
-    expect(page).to have_content "Has made 1 rating"
-    expect(page).to have_content "iso 3 1"
   end
 end
