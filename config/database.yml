@@ -22,4 +22,7 @@ test:
 
 production:
   <<: *default
-  database: db/production.sqlite3
+  adapter: postgres
+  database: ratebeer
+  username: ratebeer_user
+  password: <%= ENV['MYSITE_DATABASE_PASSWORD'] %>
