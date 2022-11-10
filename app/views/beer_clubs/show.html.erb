@@ -2,13 +2,20 @@
 
 <%= render @beer_club %>
 
-<% if current_user && current_user.memberships.map{|m| m.beer_club}.exclude?(@beer_club) %>
-  <%= form_with(model: @membership) do |form| %>
-    <%= form.hidden_field :beer_club_id, value: @beer_club.id %>
-    <%= form.hidden_field :user_id, value: current_user.id %>
-    <%= form.submit "Join the beer club" %>
-  <% end %>
-  
+<% if current_user %>
+  <% if current_user.memberships.map{|m| m.beer_club}.exclude?(@beer_club) %>
+    <%= form_with(model: @membership) do |form| %>
+      <%= form.hidden_field :beer_club_id, value: @beer_club.id %>
+      <%= form.hidden_field :user_id, value: current_user.id %>
+      <%= form.submit "Join the beer club" %>
+    <% end %>
+  <% else %>
+    <%= form_with(model: @membership, method: :delete, url: "/memberships/#{current_user.memberships.select{ |m| m.beer_club == @beer_club }.first.id}") do |form| %>
+      <%= form.hidden_field :beer_club_id, value: @beer_club.id %>
+      <%= form.hidden_field :user_id, value: current_user.id %>
+      <%= form.submit "End the membership" %>
+    <% end %>
+  <% end %>  
   <div>
     <%= link_to('Edit this beer club', edit_beer_club_path(@beer_club)) %>
     <%= button_to('Destroy this beer club', @beer_club, method: :delete) %>
