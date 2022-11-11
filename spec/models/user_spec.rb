@@ -65,7 +65,7 @@ RSpec.describe User, type: :model do
       beer1 = FactoryBot.create(:beer)
       FactoryBot.create(:rating, beer: beer1, score: 7, user: user )
       beer2 = FactoryBot.create(:beer)
-      beer2.style = "best"
+      beer2.style = FactoryBot.create :style
       beer2.save
       FactoryBot.create(:rating, beer: beer2, score: 6, user: user )
       FactoryBot.create(:rating, beer: beer2, score: 2, user: user )

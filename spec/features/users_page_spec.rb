@@ -3,6 +3,8 @@ require 'rails_helper'
 include Helpers
 
 describe "User" do
+  let!(:style) { FactoryBot.create :style }
+
   before :each do
     @user = FactoryBot.create :user
   end
@@ -46,11 +48,11 @@ describe "User" do
       sign_in(username: "Pekka", password: "Foobar1")
 
       brewery = FactoryBot.create :brewery, name: "Koff"
-      beer = FactoryBot.create :beer, name: "iso 3", style: "cool", brewery:brewery
+      beer = FactoryBot.create :beer, name: "iso 3", style: style, brewery:brewery
       FactoryBot.create(:rating, score: 1, beer: beer, user: @user)
 
       visit user_path(@user)
-      expect(page).to have_content "Favorite style is #{beer.style}"
+      expect(page).to have_content "Favorite style is #{beer.style.name}"
       expect(page).to have_content "Favorite brewery is #{brewery.name}"
     end
   end

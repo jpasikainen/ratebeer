@@ -31,6 +31,12 @@
           null
         ]
       },
+      "/home/jp/Projects/ratebeer/app/helpers/styles_helper.rb": {
+        "lines": [
+          1,
+          null
+        ]
+      },
       "/home/jp/Projects/ratebeer/app/helpers/users_helper.rb": {
         "lines": [
           1,
@@ -45,8 +51,8 @@
           1,
           1,
           1,
-          null,
           1,
+          null,
           1,
           null,
           1,
@@ -124,6 +130,13 @@
           32,
           null,
           null,
+          1,
+          null
+        ]
+      },
+      "/home/jp/Projects/ratebeer/app/models/style.rb": {
+        "lines": [
+          1,
           1,
           null
         ]
@@ -297,6 +310,8 @@
           null,
           null,
           1,
+          0,
+          0,
           null,
           null,
           null,
@@ -493,6 +508,10 @@
           null,
           1,
           0,
+          0,
+          null,
+          0,
+          null,
           null,
           null,
           1,
@@ -571,6 +590,7 @@
           0,
           null,
           null,
+          0,
           0,
           0,
           null,
@@ -698,6 +718,84 @@
           null,
           0,
           0,
+          0,
+          null,
+          0,
+          0,
+          0,
+          0,
+          0,
+          null,
+          0,
+          null,
+          null,
+          0,
+          0,
+          0,
+          null,
+          null,
+          0,
+          0,
+          0,
+          0
+        ],
+        "branches": {
+        }
+      },
+      "/home/jp/Projects/ratebeer/app/controllers/styles_controller.rb": {
+        "lines": [
+          0,
+          0,
+          null,
+          null,
+          0,
+          0,
+          0,
+          null,
+          null,
+          0,
+          0,
+          null,
+          null,
+          0,
+          0,
+          0,
+          null,
+          null,
+          0,
+          0,
+          null,
+          null,
+          0,
+          0,
+          null,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          null,
+          null,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          null,
+          null,
+          0,
+          0,
           null,
           0,
           0,
@@ -706,7 +804,6 @@
           0,
           null,
           0,
-          null,
           null,
           0,
           0,
@@ -745,6 +842,6 @@
         }
       }
     },
-    "timestamp": 1668074366
+    "timestamp": 1668177226
   }
 }
