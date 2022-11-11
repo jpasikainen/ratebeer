@@ -4,4 +4,15 @@
     <%= style.name %>
   </p>
 
+  <p>
+    <strong>Description:</strong>
+    <%= style.description %>
+  </p>
+
+  <h3>beers</h3>
+  <ul>
+  <% style.beers.each do | beer | %>
+    <li><%= link_to beer.name, beer %></li>
+  <% end %>
+  </ul>
 </div>
