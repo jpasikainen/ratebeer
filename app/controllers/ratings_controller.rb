@@ -1,6 +1,9 @@
 class RatingsController < ApplicationController
   def index
     @ratings = Rating.all
+    @recent_ratings = Rating.recent
+    @top_beers = Rating.all.group_by(&:beer).sort_by{ |beer, _ratings| -beer.average_rating }.take(3)
+    @top_breweries = Rating.all.group_by{ |rating| rating.beer.brewery}.sort_by{ |brewery, _ratings| -brewery.average_rating }.take(3)
   end
 
   def new

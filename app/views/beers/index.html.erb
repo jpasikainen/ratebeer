@@ -1,4 +1,3 @@
-<p style="color: green"><%= notice %></p>
 
 <h1>Beers</h1>
 
@@ -20,11 +19,7 @@
           <td><%= link_to beer.style.name, beer.style %></td>
           <td><%= link_to beer.brewery.name, beer.brewery %></td>
           <td>
-            <% if beer.ratings.empty? %>
-              0.0
-            <% else %>
-              <%= beer.average_rating %>
-            <% end %>
+            <%= beer.average_rating %>
           </td>
         </tr>
       </tbody>
