@@ -5,6 +5,7 @@ class RatingsController < ApplicationController
     @top_beers = Rating.all.group_by(&:beer).sort_by{ |beer, _ratings| -beer.average_rating }.take(3)
     @top_breweries = Rating.all.group_by{ |rating| rating.beer.brewery }.sort_by{ |brewery, _ratings| -brewery.average_rating }.take(3)
     @top_styles = Rating.all.group_by{ |rating| rating.beer.style }.sort_by{ |style, _ratings| -style.average_rating }.take(3)
+    @top_users = User.all.sort_by{ |u| -u.ratings.count }.take(3)
   end
 
   def new

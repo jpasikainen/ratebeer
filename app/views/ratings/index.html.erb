@@ -5,6 +5,15 @@
 
 <%= render partial: "best", locals: {category: "styles", items: @top_styles} %>
 
+<% if @top_users %>
+  <h2>Most active users</h2>
+  <ol>
+    <% @top_users.each do |user| %>
+      <li><%= user.username %> <%= user.ratings.count %> ratings</li>
+    <% end %>
+  </ol>
+<% end %>
+
 <h2>Recent ratings</h2>
 <ul>
   <% @recent_ratings.each do | rating | %>
