@@ -5,12 +5,17 @@ class WeatherApi
   end
 
   def self.get_weather_in(city)
-    url = "http://api.weatherstack.com/current?access_key=#{key}&query=#{city}"
-    response = HTTParty.get "#{url}#{ERB::Util.url_encode(city)}"
+    query = {
+      "access_key" => key,
+      "query" => ERB::Util.url_encode(city)
+    }
+    url = "http://api.weatherstack.com/current"
+    response = HTTParty.get url, query: query
 
     return [] if response.is_a?(Hash) && (weather.nil? || response.body.empty?)
 
-    JSON.parse(response.to_json, object_class: OpenStruct).current
+    weather = JSON.parse(response.to_json, object_class: Weather)
+    weather.current
   end
 
   def self.key
