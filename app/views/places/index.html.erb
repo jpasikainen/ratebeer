@@ -8,6 +8,19 @@
 <% end %>
 
 <% if @places %>
+  <strong>Weather:</strong>
+  <% if @weather %>
+  <div>
+    <p><%= @weather.temperature %> celcius</p>
+    <% @weather.weather_icons.each do |icon| %>
+      <img src=<%= icon %>>
+    <% end %>
+    <p><strong>Wind: </strong> <%= @weather.wind_speed %>, direction <%= @weather.wind_dir %></p>
+  </div>
+  <% else %>
+    No weather data found!
+  <% end %>
+
   <table>
     <thead>
       <% Place.rendered_fields.each do |field| %>
