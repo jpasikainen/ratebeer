@@ -1,0 +1,8 @@
+<% if items %>
+<h2>Best <%= category %></h2>
+<ol>
+  <% items.each do |item| %>
+    <li><%= item[0].name %> <%= item[0].average_rating %></li>
+  <% end %>
+</ol>
+<% end %>

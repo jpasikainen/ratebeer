@@ -1,23 +1,9 @@
-<h2>List of <%= pluralize(@ratings.count, "rating") %></h2>
-<ul>
-  <% @ratings.each do |rating| %>
-    <li> <%= render rating %> </li>
-  <% end %>
-</ul>
+<h2>Ratings</h2>
+<%= render partial: "best", locals: {category: "beers", items: @top_beers} %>
 
-<h2>Top 3 beers</h2>
-<ol>
-  <% @top_beers.each do |beer| %>
-    <li><%= beer[0].name %> <%= beer[0].average_rating %></li>
-  <% end %>
-</ol>
+<%= render partial: "best", locals: {category: "breweries", items: @top_breweries} %>
 
-<h2>Top 3 breweries</h2>
-<ol>
-  <% @top_breweries.each do |brewery| %>
-    <li><%= brewery[0].name %> <%= brewery[0].average_rating %></li>
-  <% end %>
-</ol>
+<%= render partial: "best", locals: {category: "styles", items: @top_styles} %>
 
 <h2>Recent ratings</h2>
 <ul>
