@@ -23,6 +23,7 @@ end
 
 def create_places_and_search (places)
   allow(BeermappingApi).to receive(:places_in).with("kumpula").and_return(places)
+  allow(WeatherApi).to receive(:weather_in).with("kumpula").and_return(OpenStruct.new(temperature: 10, weather_icons: [], wind_speed: 13, wind_dir: "N"))
 
   visit places_path
   fill_in('city', with: 'kumpula')
