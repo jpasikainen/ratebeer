@@ -509,11 +509,16 @@
           null,
           null,
           1,
+          null,
+          0,
+          null,
+          null,
           0,
           0,
           null,
           0,
           null,
+          0,
           0,
           null,
           null,
@@ -546,8 +551,8 @@
           1,
           null,
           2,
-          2,
           null,
+          2,
           2,
           null,
           null,
@@ -869,8 +874,16 @@
         ],
         "branches": {
         }
+      },
+      "/home/jp/Projects/ratebeer/app/models/weather.rb": {
+        "lines": [
+          0,
+          0
+        ],
+        "branches": {
+        }
       }
     },
-    "timestamp": 1668343443
+    "timestamp": 1668346988
   }
 }
