@@ -14,24 +14,24 @@
     </thead>
 
     <% @beers.each do |beer| %>
-        <tbody>
-          <tr>
-            <td><%= link_to beer.name, beer %></td>
-            <td><%= link_to beer.style.name, beer.style %></td>
-            <td><%= link_to beer.brewery.name, beer.brewery %></td>
-            <td>
-              <% if beer.ratings.empty? %>
-                0.0
-              <% else %>
-                <%= beer.average_rating %>
-              <% end %>
-            </td>
-          </tr>
-        </tbody>
+      <tbody>
+        <tr>
+          <td><%= link_to beer.name, beer %></td>
+          <td><%= link_to beer.style.name, beer.style %></td>
+          <td><%= link_to beer.brewery.name, beer.brewery %></td>
+          <td>
+            <% if beer.ratings.empty? %>
+              0.0
+            <% else %>
+              <%= beer.average_rating %>
+            <% end %>
+          </td>
+        </tr>
+      </tbody>
     <% end %>
   </table>
 </div>
 
 
-<%= link_to('list of breweries', breweries_path, class:'btn btn-primary') %>
+<%= link_to('List of breweries', breweries_path, class:'btn btn-primary') %>
 <%= link_to('New Beer', new_beer_path, class:'btn btn-primary') if current_user %>

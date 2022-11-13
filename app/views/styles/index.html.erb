@@ -3,12 +3,22 @@
 <h1>Styles</h1>
 
 <div id="styles">
-  <% @styles.each do |style| %>
-    <%= render style %>
-    <p>
-      <%= link_to "Show this style", style %>
-    </p>
-  <% end %>
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th scope="col">Name</th>
+        <th scope="col">Description</th>
+        <th scope="col">Beers</th>
+      </tr>
+    </thead>
+    <% @styles.each do |style| %>
+      <tbody>
+        <td><%= link_to style.name, style %></td>
+        <td><%= style.description %></td>
+        <td><%= style.beers.count %></td>
+      </tbody>
+    <% end %>
+  </table>
 </div>
 
 <%= link_to "New style", new_style_path %>
