@@ -30,10 +30,9 @@ describe "Rating" do
     FactoryBot.create(:rating, score: 10, user: user)
     FactoryBot.create(:rating, score: 20, user: user)
     visit ratings_path
-    expect(page).to have_content "List of 2 ratings"
 
     user.ratings.each do |r|
-      expect(page).to have_content "#{r.beer.name} #{r.score} #{r.user.username}"
+      expect(page).to have_content "#{r.beer.name} #{r.score} #{r.updated_at}"
     end
   end
 

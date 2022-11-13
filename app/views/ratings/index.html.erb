@@ -17,6 +17,6 @@
 <h2>Recent ratings</h2>
 <ul>
   <% @recent_ratings.each do | rating | %>
-    <li><%= rating.beer %> <%= rating.score %> <%= rating.updated_at %></li>
+    <li><%= rating.beer.name %> <%= rating.score %> <%= rating.updated_at %></li>
   <% end %>
 </ul>
