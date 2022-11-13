@@ -1,5 +1,14 @@
 class UsersController < ApplicationController
   before_action :set_user, only: %i[show edit update destroy]
+  before_action :ensure_that_admin, only: [:ban]
+
+
+  def ban
+    user = User.find(params[:id])
+    user.update_attribute :banned, !user.banned
+    new_status = user.banned? ? "banned" : "not banned"
+    redirect_to user, notice: "User is now #{new_status}"
+  end
 
   # GET /users or /users.json
   def index

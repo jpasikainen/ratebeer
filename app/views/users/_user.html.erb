@@ -1,7 +1,9 @@
 <div id="<%= dom_id user %>">
+  <% if user.banned  %>
+    <span class="badge bg-secondary">banned</span>
+  <% end %>
   <p>
     <strong>Username:</strong>
     <%= user.username %>
   </p>
-
 </div>

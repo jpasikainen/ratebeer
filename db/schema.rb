@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_11_13_184629) do
+ActiveRecord::Schema[7.0].define(version: 2022_11_13_185806) do
   create_table "beer_clubs", force: :cascade do |t|
     t.string "name"
     t.integer "founded"
@@ -63,6 +63,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_13_184629) do
     t.datetime "updated_at", null: false
     t.string "password_digest"
     t.boolean "admin"
+    t.boolean "banned"
   end
 
 end

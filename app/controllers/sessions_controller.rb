@@ -5,6 +5,10 @@ class SessionsController < ApplicationController
 
   def create
     user = User.find_by username: params[:username]
+    if user.banned
+      return redirect_to signin_path, notice: "Your account is closed. Please contact admins."
+    end
+
     # tarkastetaan että käyttäjä olemassa, ja että salasana on oikea
     if user&.authenticate(params[:password])
       session[:user_id] = user.id
