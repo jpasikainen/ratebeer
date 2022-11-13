@@ -17,7 +17,7 @@ class PlacesController < ApplicationController
     else
       session[:previous_search] = params[:city]
       @weather = WeatherApi.weather_in(session[:previous_search])
-      
+
       render :index, status: 418
     end
   end
