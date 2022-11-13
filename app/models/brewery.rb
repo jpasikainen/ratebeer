@@ -8,7 +8,7 @@ class Brewery < ApplicationRecord
                                    less_than_or_equal_to: ->(_) { Time.now.year } }
 
   scope :active, -> { where active: true }
-  scope :retired, -> { where active: [nil,false] }
+  scope :retired, -> { where active: [nil, false] }
 
   include RatingAverage
 end

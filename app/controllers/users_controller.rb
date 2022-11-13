@@ -2,7 +2,6 @@ class UsersController < ApplicationController
   before_action :set_user, only: %i[show edit update destroy]
   before_action :ensure_that_admin, only: [:ban]
 
-
   def ban
     user = User.find(params[:id])
     user.update_attribute :banned, !user.banned
