@@ -7,7 +7,7 @@
 <% if @user.ratings.empty? %>
   No ratings.
 <% else %>
-  Has made <%= pluralize @user.ratings.count, 'rating' %>, average rating <%= @user.average_rating %>
+  Has made <%= pluralize @user.ratings.count, 'rating' %>, average rating <%= round(@user.average_rating) %>
 <% end %>
 
 <strong>ratings</strong>
