@@ -79,7 +79,7 @@ BEERS.sortByStyle = () => {
 
 BREWERIES.sortByYear = () => {
   BREWERIES.list.sort((a, b) => {
-    return a.year - b.year;
+    return b.year - a.year;
   });
 };
 
@@ -88,6 +88,12 @@ BEERS.sortByBrewery = () => {
     return a.brewery.name
       .toUpperCase()
       .localeCompare(b.brewery.name.toUpperCase());
+  });
+};
+
+BREWERIES.sortByBeers = () => {
+  BREWERIES.list.sort((a, b) => {
+    return b.beers.length - a.beers.length;
   });
 };
 
@@ -129,6 +135,12 @@ const breweries = () => {
   document.getElementById("year").addEventListener("click", (e) => {
     e.preventDefault;
     BREWERIES.sortByYear();
+    BREWERIES.show();
+  });
+
+  document.getElementById("beers").addEventListener("click", (e) => {
+    e.preventDefault;
+    BREWERIES.sortByBeers();
     BREWERIES.show();
   });
 
