@@ -1,35 +1,33 @@
 
-<h3>Username:</h3>
-<p>
-  <%= @user.username %>
-</p>
+<h3>
+  <strong>Username: </strong><%= @user.username %>
+</h3>
 
 <% if @user.ratings.empty? %>
-  No ratings.
+  User has no ratings.
 <% else %>
   Has made <%= pluralize @user.ratings.count, 'rating' %>, average rating <%= round(@user.average_rating) %>
+  <strong>ratings</strong>
+  <ul>
+    <% @user.ratings.each do |rating| %>
+      <li> <%= render rating %> <%= link_to 'delete', rating, data: {"turbo-method": :delete} %> </li>
+    <% end %>
+  </ul>
+  <p>Favorite style is <%= @user.favorite_style.name %></p>
+    <br />
+  <p>Favorite brewery is <%= @user.favorite_brewery.name %></p>
 <% end %>
 
-<strong>ratings</strong>
-<ul>
-  <% @user.ratings.each do |rating| %>
-    <li> <%= render rating %> <%= link_to 'delete', rating, data: {"turbo-method": :delete} %> </li>
-  <% end %>
-</ul>
-
-<strong>Clubs</strong>
-<ul>
-  <% @user.beer_clubs.each do |club| %>
-    <li> <%= link_to club.name, club %> </li>
-  <% end %>
-</ul>
-
-<% if @user.ratings.empty? %>
-    user has no ratings
+<% if @user == current_user && @user.beer_clubs.empty? %>
+  <br>
+  <%= link_to "Join a club!", new_membership_path, class: "btn btn-primary" %>
 <% else %>
-    Favorite style is <%= @user.favorite_style.name %>
-    <br />
-    Favorite brewery is <%= @user.favorite_brewery.name %>
+  <h3><strong>Clubs:</strong></h3>
+  <ul>
+    <% @user.beer_clubs.each do |club| %>
+      <li> <%= link_to club.name, club %> </li>
+    <% end %>
+  </ul>
 <% end %>
 
 <% if current_user && current_user.admin %>
@@ -43,6 +41,6 @@
   <%= link_to "Edit this user", edit_user_path(@user) %> |
   <%= link_to "Back to users", users_path %>
 
-  <%= button_to "Destroy this user", @user, method: :delete %>
+  <%= button_to "Destroy this user", @user, method: :delete, class: "btn btn-danger" %>
 </div>
 <% end %>
