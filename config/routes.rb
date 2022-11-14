@@ -19,6 +19,8 @@ Rails.application.routes.draw do
   get 'places', to: 'places#index'
   post 'places', to: 'places#search'
   resources :places, only: [:index, :show]
+  get 'beerlist', to: 'beers#list'
+  get 'brewerylist', to: 'breweries#list'
 
   root "breweries#index"
 end
